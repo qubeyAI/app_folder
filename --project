@@ -1,0 +1,4 @@
+[?25l⠋ Fetching available Firebase projects...                                       
+[A[2Ki Found 0 Firebase projects.                                                    
+[?25h[?25l? Would you like to create a new Firebase project? (y/n) › yes                  
+Error: Unable to find git in your PATH. 
