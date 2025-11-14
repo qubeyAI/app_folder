@@ -40,7 +40,6 @@ dependencies:
   # Audio player compatible with Dart 3.5
   audioplayers: ^5.2.1
 
-  alarm: ^5.1.5
   file_picker: ^8.0.6
   share_plus: ^7.2.1
 
@@ -85,4 +84,5 @@ flutter:
     - assets/logo/qubey logo.jpg
     - assets/welcome screen/Untitled design.png
     - assets/logo.png/app_icon.png
+
 
