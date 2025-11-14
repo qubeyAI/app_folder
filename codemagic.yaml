@@ -34,9 +34,6 @@ workflows:
         script: |
           flutter build appbundle --release
 
-    cache:
-      - build
-
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
 
