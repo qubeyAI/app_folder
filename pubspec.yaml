@@ -44,7 +44,7 @@ dependencies:
   upi_india: ^3.0.1
 
   # Latest compatible notifications
-  flutter_local_notifications: ^19.5.0
+  flutter_local_notifications: ^18.0.1
 
   fl_chart: ^0.67.0
 
@@ -94,6 +94,7 @@ flutter:
     - assets/logo/qubey logo.jpg
     - assets/welcome screen/Untitled design.png
     - assets/logo.png/app_icon.png
+
 
 
 
