@@ -1,24 +1,21 @@
 workflows:
-  android-release-firebase:
-    name: Android Release with Firebase
-    max_build_duration: 150
+  android-release:
+    name: Android Release Workflow
+    max_build_duration: 120
     environment:
       flutter: 3.13.10
+      xcode: latest
+      cocoapods: default
       vars:
         ANDROID_KEYSTORE_BASE64: EncryptedKeystoreHere
-        ANDROID_KEYSTORE_PASSWORD: KeystorePasswordHere
-        ANDROID_KEY_ALIAS: KeyAliasHere
-        ANDROID_KEY_PASSWORD: KeyPasswordHere
+        ANDROID_KEYSTORE_PASSWORD: EncryptedPasswordHere
+        ANDROID_KEY_ALIAS: keyAliasHere
+        ANDROID_KEY_PASSWORD: keyPasswordHere
+      gradle_cache: true
+      cache:
+        - .pub-cache
+        - build
     scripts:
-      - name: Decode keystore
-        script: |
-          echo $ANDROID_KEYSTORE_BASE64 | base64 --decode > android/app/keystore.jks
-      - name: Set key.properties for signing
-        script: |
-          echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" > android/key.properties
-          echo "keyPassword=$ANDROID_KEY_PASSWORD" >> android/key.properties
-          echo "keyAlias=$ANDROID_KEY_ALIAS" >> android/key.properties
-          echo "storeFile=keystore.jks" >> android/key.properties
       - name: Flutter pub get
         script: |
           flutter pub get
@@ -27,18 +24,14 @@ workflows:
           flutter clean
       - name: Build Android AppBundle
         script: |
-          flutter build appbundle --release
-      - name: Upload Firebase service file
-        script: |
-          if [ ! -f android/app/google-services.json ]; then
-            echo "Missing google-services.json. Upload it as an environment variable or manually."
-            exit 1
-          fi
-    cache: true   # ✅ This must be at the workflow level, not inside scripts
+          flutter build appbundle --release --no-shrink
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
     publishing:
       email:
         recipients:
           - your_qubey.ai@gmail.com
+        on_success: all
+        on_failure: all
+
 
