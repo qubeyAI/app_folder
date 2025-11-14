@@ -35,8 +35,9 @@ workflows:
           flutter build appbundle --release
 
     cache:
-        - .pub-cache
-        - build
+  flutter: true      # caches Dart/Flutter dependencies
+  gradle: true       # caches Gradle builds
+
 
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
