@@ -1,4 +1,5 @@
-// Top-level build file for your project
+// Top-level build file
+
 buildscript {
     ext.kotlin_version = '1.9.0'
     repositories {
@@ -6,10 +7,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // The Android Gradle plugin that builds your app
         classpath 'com.android.tools.build:gradle:8.1.0'
-        // Kotlin Gradle plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not add 'dev.flutter.flutter-gradle-plugin' here; it's applied in app/build.gradle
     }
 }
 
@@ -20,25 +20,10 @@ allprojects {
     }
 }
 
-
-
-// Define the common build directory
-rootProject.buildDir = "../build"
-
-// Configure subproject build directories
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
 
-// Ensure the app module is evaluated before others
-subprojects {
-    project.evaluationDependsOn(":app")
-}
-
-// Clean task to remove old builds
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
-}
 
 
 
