@@ -35,8 +35,8 @@ workflows:
           flutter build appbundle --release
 
     cache:
-  flutter: true      # caches Dart/Flutter dependencies
-  gradle: true       # caches Gradle builds
+        flutter: true      # caches Dart/Flutter dependencies
+        gradle: true       # caches Gradle builds
 
 
     artifacts:
