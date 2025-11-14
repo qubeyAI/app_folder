@@ -1,5 +1,4 @@
 // Top-level build file for your project
-
 buildscript {
     ext.kotlin_version = '1.9.0'
     repositories {
@@ -7,12 +6,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // Android Gradle plugin
-        classpath 'com.android.tools.build:gradle:8.1.1'
+        // The Android Gradle plugin that builds your app
+        classpath 'com.android.tools.build:gradle:8.1.0'
         // Kotlin Gradle plugin
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // Flutter Gradle plugin (only here, not in app/build.gradle)
-        classpath 'dev.flutter:flutter-gradle-plugin'
     }
 }
 
@@ -23,28 +20,43 @@ allprojects {
     }
 }
 
-// Define a common build directory for all subprojects
+
+
+// Define the common build directory
 rootProject.buildDir = "../build"
 
+// Configure subproject build directories
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+
+// Ensure the app module is evaluated before others
+subprojects {
     project.evaluationDependsOn(":app")
 }
 
-// Clean task
-tasks.register("clean", Delete) {
+// Clean task to remove old builds
+tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
 
-// Optional: redirect build directory (matches your previous setup)
-val newBuildDir = rootProject.layout.buildDirectory.dir("../../build").get()
+
+
+
+val newBuildDir: Directory =
+    rootProject.layout.buildDirectory
+        .dir("../../build")
+        .get()
 rootProject.layout.buildDirectory.value(newBuildDir)
 
 subprojects {
-    val newSubprojectBuildDir = newBuildDir.dir(project.name)
+    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
+subprojects {
+    project.evaluationDependsOn(":app")
+}
 
-
-
-
+tasks.register<Delete>("clean") {
+    delete(rootProject.layout.buildDirectory)
+}
