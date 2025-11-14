@@ -34,7 +34,7 @@ workflows:
             echo "Missing google-services.json. Upload it as an environment variable or manually."
             exit 1
           fi
-      cache: true  # ✅ Simple caching; automatically caches Flutter and Gradle
+    cache: true   # ✅ This must be at the workflow level, not inside scripts
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
     publishing:
