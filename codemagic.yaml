@@ -3,7 +3,8 @@ workflows:
     name: Android Release with Firebase
     max_build_duration: 120
     environment:
-      flutter: 3.13.10
+      flutter: 3.16.9
+
       vars:
         ANDROID_KEYSTORE_BASE64: EncryptedKeystoreHere
         ANDROID_KEYSTORE_PASSWORD: KeystorePasswordHere
