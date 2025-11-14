@@ -4,16 +4,11 @@ workflows:
     max_build_duration: 150
     environment:
       flutter: 3.13.10
-      android: latest
       vars:
         ANDROID_KEYSTORE_BASE64: EncryptedKeystoreHere
         ANDROID_KEYSTORE_PASSWORD: KeystorePasswordHere
         ANDROID_KEY_ALIAS: KeyAliasHere
         ANDROID_KEY_PASSWORD: KeyPasswordHere
-      cache:
-        paths:
-          - ~/.pub-cache
-          - build
 
     scripts:
       - name: Decode keystore
@@ -28,24 +23,21 @@ workflows:
           echo "storeFile=keystore.jks" >> android/key.properties
 
       - name: Flutter pub get
-        script: flutter pub get
+        script: |
+          flutter pub get
 
       - name: Clean previous builds
-        script: flutter clean
+        script: |
+          flutter clean
 
       - name: Build Android AppBundle
-        script: flutter build appbundle --release
+        script: |
+          flutter build appbundle --release
+
+    cache:
+      - build
 
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
 
-    publishing:
-      github:
-        owner: your-github-username
-        repository: your-repo-name
-        token: $GITHUB_TOKEN
-        paths:
-          - build/app/outputs/bundle/release/app-release.aab
-        on_success: always
-        on_failure: always
 
