@@ -15,13 +15,21 @@ dependencies:
   cupertino_icons: ^1.0.8
   icons_plus: ^5.0.0
   google_fonts: ^6.2.0
+
+  # Splash screen
   flutter_native_splash: ^2.4.1
+
   font_awesome_flutter: ^10.5.0
-  timezone: ^0.10.1
-  awesome_notifications: ^0.6.19
+
+  # Timezone (compatible w/ flutter_local_notifications)
+  timezone: ^0.9.4
+
+  # Remove awesome_notifications to avoid conflict
+  # awesome_notifications: REMOVE
+
   url_launcher: ^6.3.0
 
-  # Firebase (versions compatible with Flutter 3.24 / Dart 3.5)
+  # Firebase (Dart 3.5 compatible versions)
   firebase_core: ^3.8.0
   firebase_auth: ^5.1.4
   cloud_firestore: ^5.4.4
@@ -33,6 +41,8 @@ dependencies:
   confetti: ^0.7.0
   intl: ^0.19.0
   upi_india: ^3.0.1
+
+  # Latest compatible notifications
   flutter_local_notifications: ^19.5.0
 
   fl_chart: ^0.67.0
@@ -43,10 +53,9 @@ dependencies:
   file_picker: ^8.0.6
   share_plus: ^7.2.1
 
-  # WebView compatible with Dart 3.5
-  webview_flutter: ^4.2.4
+  # WebView version compatible with Dart 3.5
+  webview_flutter: ^4.10.0
 
-  # In-app purchase compatible
   in_app_purchase: ^3.1.11
 
   flutter_launcher_icons: ^0.13.1
@@ -72,8 +81,8 @@ dev_dependencies:
 flutter_native_splash:
   color: "#f7f6f1"
   color_dark: "#272727"
-  image: assets/logo/
-  image_dark: assets/logo/
+  image: assets/logo/qubey logo.jpg
+  image_dark: assets/logo/qubey logo.jpg
 
 flutter:
   uses-material-design: true
