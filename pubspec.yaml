@@ -23,7 +23,6 @@ dependencies:
 
   # Timezone (compatible w/ flutter_local_notifications)
   timezone: ^0.9.4
-  flutter_local_notifications: ^18.0.1
 
   # Remove awesome_notifications to avoid conflict
   # awesome_notifications: REMOVE
@@ -94,6 +93,7 @@ flutter:
     - assets/logo/qubey logo.jpg
     - assets/welcome screen/Untitled design.png
     - assets/logo.png/app_icon.png
+
 
 
 
