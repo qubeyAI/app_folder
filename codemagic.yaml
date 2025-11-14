@@ -1,37 +1,45 @@
 workflows:
-  android-release:
-    name: Android Release Workflow
-    max_build_duration: 120
+  android-release-firebase:
+    name: Android Release with Firebase
+    max_build_duration: 150
     environment:
       flutter: 3.13.10
-      xcode: latest
-      cocoapods: default
       vars:
         ANDROID_KEYSTORE_BASE64: EncryptedKeystoreHere
-        ANDROID_KEYSTORE_PASSWORD: EncryptedPasswordHere
-        ANDROID_KEY_ALIAS: keyAliasHere
-        ANDROID_KEY_PASSWORD: keyPasswordHere
-      gradle_cache: true
-      cache:
-        - .pub-cache
-        - build
+        ANDROID_KEYSTORE_PASSWORD: KeystorePasswordHere
+        ANDROID_KEY_ALIAS: KeyAliasHere
+        ANDROID_KEY_PASSWORD: KeyPasswordHere
+
     scripts:
+      - name: Decode keystore
+        script: |
+          echo $ANDROID_KEYSTORE_BASE64 | base64 --decode > android/app/keystore.jks
+
+      - name: Set key.properties for signing
+        script: |
+          echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" > android/key.properties
+          echo "keyPassword=$ANDROID_KEY_PASSWORD" >> android/key.properties
+          echo "keyAlias=$ANDROID_KEY_ALIAS" >> android/key.properties
+          echo "storeFile=keystore.jks" >> android/key.properties
+
       - name: Flutter pub get
         script: |
           flutter pub get
+
       - name: Clean previous builds
         script: |
           flutter clean
+
       - name: Build Android AppBundle
         script: |
-          flutter build appbundle --release --no-shrink
+          flutter build appbundle --release
+
+    cache:
+      paths:
+        - .pub-cache
+        - build
+
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
-    publishing:
-      email:
-        recipients:
-          - your_qubey.ai@gmail.com
-        on_success: all
-        on_failure: all
 
 
