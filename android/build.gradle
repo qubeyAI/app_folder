@@ -1,8 +1,8 @@
 // Top-level build file
 
 buildscript {
-    ext.kotlin_version = '1.9.0'
-    repositories {
+    ext.kotlin_version = '1.8.22'
+  repositories {
         google()
         mavenCentral()
     }
@@ -23,6 +23,7 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
 
 
 
