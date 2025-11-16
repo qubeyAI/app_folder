@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.5.0'
+        classpath 'com.android.tools.build:gradle:8.11.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not add 'dev.flutter.flutter-gradle-plugin' here; it's applied in app/build.gradle
     }
@@ -23,6 +23,7 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
 
 
 
