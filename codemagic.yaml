@@ -13,12 +13,19 @@ workflows:
 
     scripts:
       - name: Decode keystore
+        scripts:
+      - name: Clean Gradle cache
         script: |
-          echo $ANDROID_KEYSTORE_BASE64 | base64 --decode > android/app/keystore.jks
+          rm -rf ~/.gradle/caches
+          rm -rf ~/.gradle/daemon
+          rm -rf ~/.gradle/native
+          rm -rf ~/.gradle/wrapper
+          echo "Gradle cache cleared."
+
 
       - name: Set key.properties for signing
         script: |
-          echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" > android/key.properties
+         echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" > android/key.properties
           echo "keyPassword=$ANDROID_KEY_PASSWORD" >> android/key.properties
           echo "keyAlias=$ANDROID_KEY_ALIAS" >> android/key.properties
           echo "storeFile=keystore.jks" >> android/key.properties
