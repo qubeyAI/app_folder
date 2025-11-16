@@ -5,6 +5,8 @@ workflows:
 
     environment:
       flutter: 3.24.3
+      xcode: latest
+      java: 17
       vars:
         ANDROID_KEYSTORE_BASE64: EncryptedKeystoreHere
         ANDROID_KEYSTORE_PASSWORD: KeystorePasswordHere
