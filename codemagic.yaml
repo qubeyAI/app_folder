@@ -15,22 +15,16 @@ workflows:
 
     scripts:
 
-      # 🔥 1. Delete old Gradle wrapper & cache (IMPORTANT)
-      - name: Delete old Gradle wrapper from cache
+      - name: Force update Gradle wrapper to 8.11.1
         script: |
-          echo "Deleting old Gradle wrapper & cache..."
-          rm -rf ~/.gradle/wrapper
-          rm -rf ~/.gradle/caches
-
-      # 🔥 2. Force-update Gradle wrapper to 8.11.1 (REQUIRED)
-      - name: Update Gradle wrapper in project
-        script: |
-          echo "Updating Gradle wrapper to 8.11.1"
-
-      # 🔥 3. Validate wrapper (stops build if wrong)
-      - name: Validate Gradle version
-        script: |
-          echo "Validating gradle version..."
+          echo "Updating Gradle wrapper..."
+          mkdir -p android/gradle/wrapper
+          echo "distributionBase=GRADLE_USER_HOME" > android/gradle/wrapper/gradle-wrapper.properties
+          echo "distributionPath=wrapper/dists" >> android/gradle/wrapper/gradle-wrapper.properties
+          echo "zipStoreBase=GRADLE_USER_HOME" >> android/gradle/wrapper/gradle-wrapper.properties
+          echo "zipStorePath=wrapper/dists" >> android/gradle/wrapper/gradle-wrapper.properties
+          echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.11.1-all.zip" >> android/gradle/wrapper/gradle-wrapper.properties
+          cat android/gradle/wrapper/gradle-wrapper.properties
 
       - name: Set key.properties for signing
         script: |
