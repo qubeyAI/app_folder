@@ -14,7 +14,27 @@ workflows:
         ANDROID_KEY_PASSWORD: KeyPasswordHere
 
     scripts:
-     
+
+      # 🔥 1. Delete old Gradle wrapper & cache (IMPORTANT)
+      - name: Delete old Gradle wrapper from cache
+        script: |
+          echo "Deleting old Gradle wrapper & cache..."
+          rm -rf ~/.gradle/wrapper
+          rm -rf ~/.gradle/caches
+
+      # 🔥 2. Force-update Gradle wrapper to 8.11.1 (REQUIRED)
+      - name: Update Gradle wrapper in project
+        script: |
+          echo "Updating Gradle wrapper to 8.11.1"
+          sed -i.bak 's#distributionUrl=.*#distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-all.zip#g' android/gradle/wrapper/gradle-wrapper.properties
+          cat android/gradle/wrapper/gradle-wrapper.properties
+
+      # 🔥 3. Validate wrapper (stops build if wrong)
+      - name: Validate Gradle version
+        script: |
+          echo "Validating gradle version..."
+          grep "8.11.1" android/gradle/wrapper/gradle-wrapper.properties || (echo "Gradle version incorrect!" && exit 1)
+
       - name: Set key.properties for signing
         script: |
           echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" > android/key.properties
@@ -22,7 +42,6 @@ workflows:
           echo "keyAlias=$ANDROID_KEY_ALIAS" >> android/key.properties
           echo "storeFile=keystore.jks" >> android/key.properties
 
-    
       - name: Flutter pub get
         script: |
           flutter pub get
@@ -40,4 +59,3 @@ workflows:
 
     artifacts:
       - build/**/outputs/**/*.aab
-
