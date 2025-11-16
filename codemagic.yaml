@@ -26,8 +26,6 @@ workflows:
       - name: Update Gradle wrapper in project
         script: |
           echo "Updating Gradle wrapper to 8.11.1"
-          sed -i.bak 's#distributionUrl=.*#distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-all.zip#g' android/gradle/wrapper/gradle-wrapper.properties
-          cat android/gradle/wrapper/gradle-wrapper.properties
 
       # 🔥 3. Validate wrapper (stops build if wrong)
       - name: Validate Gradle version
