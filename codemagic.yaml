@@ -14,18 +14,20 @@ workflows:
         ANDROID_KEY_PASSWORD: KeyPasswordHere
 
     scripts:
-     - name: Force upgrade Gradle wrapper
-        script: |
-          echo "Upgrading Gradle wrapper to 8.11.1..."
-          sed -i.bak 's#distributionUrl=.*#distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-all.zip#g' android/gradle/wrapper/gradle-wrapper.properties
-          cat android/gradle/wrapper/gradle-wrapper.properties
-
+     
       - name: Set key.properties for signing
         script: |
           echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" > android/key.properties
           echo "keyPassword=$ANDROID_KEY_PASSWORD" >> android/key.properties
           echo "keyAlias=$ANDROID_KEY_ALIAS" >> android/key.properties
           echo "storeFile=keystore.jks" >> android/key.properties
+
+     - name: Force upgrade Gradle wrapper
+       script: |
+         echo "Upgrading Gradle wrapper to 8.11.1..."
+         sed -i.bak 's#distributionUrl=.*#distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-all.zip#g' android/gradle/wrapper/gradle-wrapper.properties
+         at android/gradle/wrapper/gradle-wrapper.properties
+
 
       - name: Flutter pub get
         script: |
