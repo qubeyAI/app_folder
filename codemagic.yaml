@@ -44,6 +44,17 @@ workflows:
           rm -rf ~/.gradle/caches
           rm -rf ~/.gradle/wrapper
 
+      - name: Patch upi_india plugin for AGP 8
+        script: |
+          PLUGIN_PATH="$HOME/.pub-cache/hosted/pub.dev/upi_india-3.0.1/android"
+          echo "" >> $PLUGIN_PATH/build.gradle
+          echo "android {" >> $PLUGIN_PATH/build.gradle
+          echo "    namespace 'com.example.upi_india'" >> $PLUGIN_PATH/build.gradle
+          echo "}" >> $PLUGIN_PATH/build.gradle
+          cat $PLUGIN_PATH/build.gradle
+
+          
+
       - name: Build Android AppBundle
         script: |
           flutter build appbundle --release
