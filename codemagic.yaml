@@ -14,14 +14,11 @@ workflows:
         ANDROID_KEY_PASSWORD: KeyPasswordHere
 
     scripts:
-      - name: Clean Gradle and Maven caches
+     - name: Force upgrade Gradle wrapper
         script: |
-          echo "Cleaning Gradle and Maven caches..."
-          rm -rf ~/.gradle/caches
-          rm -rf ~/.gradle/daemon
-          rm -rf ~/.gradle/native
-          rm -rf ~/.gradle/wrapper
-          rm -rf ~/.m2
+          echo "Upgrading Gradle wrapper to 8.11.1..."
+          sed -i.bak 's#distributionUrl=.*#distributionUrl=https\://services.gradle.org/distributions/gradle-8.11.1-all.zip#g' android/gradle/wrapper/gradle-wrapper.properties
+          cat android/gradle/wrapper/gradle-wrapper.properties
 
       - name: Set key.properties for signing
         script: |
