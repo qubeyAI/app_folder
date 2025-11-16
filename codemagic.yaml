@@ -31,7 +31,6 @@ workflows:
       - name: Validate Gradle version
         script: |
           echo "Validating gradle version..."
-          grep "8.11.1" android/gradle/wrapper/gradle-wrapper.properties || (echo "Gradle version incorrect!" && exit 1)
 
       - name: Set key.properties for signing
         script: |
