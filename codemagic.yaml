@@ -16,18 +16,16 @@ workflows:
     scripts:
       - name: Clean Gradle and Maven caches
         script: |
+          echo "Cleaning Gradle and Maven caches..."
           rm -rf ~/.gradle/caches
           rm -rf ~/.gradle/daemon
           rm -rf ~/.gradle/native
           rm -rf ~/.gradle/wrapper
           rm -rf ~/.m2
-          echo "Caches cleaned."
-
-
 
       - name: Set key.properties for signing
         script: |
-         echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" > android/key.properties
+          echo "storePassword=$ANDROID_KEYSTORE_PASSWORD" > android/key.properties
           echo "keyPassword=$ANDROID_KEY_PASSWORD" >> android/key.properties
           echo "keyAlias=$ANDROID_KEY_ALIAS" >> android/key.properties
           echo "storeFile=keystore.jks" >> android/key.properties
@@ -36,18 +34,17 @@ workflows:
         script: |
           flutter pub get
 
-      - name: Clean previous builds
+      - name: Clean previous builds and Gradle cache
         script: |
           flutter clean
-          
-           echo "Cleaning Gradle cache..."
-           rm -rf ~/.gradle/caches
-           rm -rf ~/.gradle/wrapper
-
+          echo "Cleaning Gradle cache again..."
+          rm -rf ~/.gradle/caches
+          rm -rf ~/.gradle/wrapper
 
       - name: Build Android AppBundle
         script: |
           flutter build appbundle --release
 
     artifacts:
-      - build/app/outputs/bundle/release/app-release.aab
+      - build/**/outputs/**/*.aab
+
