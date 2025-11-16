@@ -12,8 +12,6 @@ workflows:
         ANDROID_KEY_PASSWORD: KeyPasswordHere
 
     scripts:
-      - name: Decode keystore
-        scripts:
       - name: Clean Gradle cache
         script: |
           rm -rf ~/.gradle/caches
