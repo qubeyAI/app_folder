@@ -46,7 +46,8 @@ workflows:
 
       - name: Build AppBundle
         script: |
-          flutter build appbundle --release
+          flutter build appbundle --release --no-tree-shake-icons
         
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
+
