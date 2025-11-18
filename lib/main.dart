@@ -22,7 +22,6 @@ import 'package:qubeyai/screens/profile_settings_screen.dart';
 import 'package:qubeyai/screens/main_home_screen.dart';
 import 'goal_screen.dart';
 import 'notification_service.dart';
-import 'package:qubeyai/screens/alarm_screen.dart';
 import 'package:qubeyai/screens/analysis_screen.dart';
 
 
@@ -108,3 +107,4 @@ class MyApp extends StatelessWidget {
   }
 
 }
+
