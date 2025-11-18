@@ -40,7 +40,6 @@ dependencies:
   http: ^1.2.2
   confetti: ^0.7.0
   intl: ^0.19.0
-  upi_pay: ^1.0.1
 
   # Latest compatible notifications
   flutter_local_notifications: ^18.0.1
@@ -93,6 +92,7 @@ flutter:
     - assets/logo/qubey logo.jpg
     - assets/welcome screen/Untitled design.png
     - assets/logo.png/app_icon.png
+
 
 
 
