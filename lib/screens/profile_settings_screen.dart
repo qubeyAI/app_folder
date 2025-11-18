@@ -10,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert'; // For jsonEncode and jsonDecode
 import 'ai_chat_screen.dart';
 import 'package:qubeyai/screens/analysis_screen.dart';
-import 'package:qubeyai/screens/alarm_screen.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:qubeyai/screens/edit_profile_screen.dart';
 import 'package:qubeyai/screens/privacy_policy_screen.dart';
@@ -303,6 +302,7 @@ Qubey.AI — This app helps me a lot!!!
     );
   }
 }
+
 
 
 
