@@ -72,7 +72,10 @@ class NotificationService {
     required String body,
     required Duration delay,
   }) async {
-    await _notificationsPlugin.zonedSchedule(
+    uiLocalNotificationDateInterpretation:
+    UILocalNotificationDateInterpretation.absoluteTime,
+androidAllowWhileIdle: true,
+(
       1,
       title,
       body,
@@ -116,6 +119,7 @@ class NotificationService {
     );
   }
 }
+
 
 
 
