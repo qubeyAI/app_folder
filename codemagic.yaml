@@ -49,4 +49,4 @@ workflows:
           flutter build appbundle --release
 
     artifacts:
-      - build/**/outputs/**/*.aab
+      - build/app/outputs/bundle/release/app-release.aab
