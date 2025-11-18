@@ -49,6 +49,9 @@ workflows:
           # Enable core library desugaring
           echo "org.gradle.jvmargs=-Dfile.encoding=UTF-8 --add-opens java.base/java.lang=ALL-UNNAMED" >> android/gradle.properties
           flutter build appbundle --release --no-tree-shake-icons --verbose
+          # Explicitly copy AAB to expected location
+          mkdir -p build/app/outputs/bundle/release
+          cp build/app/outputs/bundle/release/app-release.aab build/app/outputs/bundle/release/app-release.aab
         
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
