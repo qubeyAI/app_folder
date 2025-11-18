@@ -44,12 +44,9 @@ workflows:
           rm -rf ~/.gradle/caches
           rm -rf ~/.gradle/wrapper
 
-      - name: Build Android AppBundle
+       - name: Build AppBundle
         script: |
           flutter build appbundle --release
-
-         - name: Build AppBundle
-        script: flutter build appbundle --release
         
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
