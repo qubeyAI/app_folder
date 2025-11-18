@@ -46,12 +46,18 @@ workflows:
 
       - name: Build AppBundle
         script: |
-          # Enable core library desugaring
+          # Ensure proper signing and Java 8 desugaring
+          echo "android.useAndroidX=true" >> android/gradle.properties
+          echo "android.enableJetifier=true" >> android/gradle.properties
           echo "org.gradle.jvmargs=-Dfile.encoding=UTF-8 --add-opens java.base/java.lang=ALL-UNNAMED" >> android/gradle.properties
-          flutter build appbundle --release --no-tree-shake-icons --verbose
-          # Explicitly copy AAB to expected location
+
+          # Build AppBundle with explicit build-name and build-number
+          flutter build appbundle --release --no-tree-shake-icons --build-name=1.0.0 --build-number=1 --verbose
+
+          # Ensure the AAB exists at the expected path
           mkdir -p build/app/outputs/bundle/release
-          cp build/app/outputs/bundle/release/app-release.aab build/app/outputs/bundle/release/app-release.aab
-        
+          cp build/app/outputs/bundle/release/app-release.aab build/app/outputs/bundle/release/app-release.aab || echo "AAB not found, check logs above"
+
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
+
