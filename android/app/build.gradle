@@ -4,12 +4,12 @@ apply plugin: 'dev.flutter.flutter-gradle-plugin'
 
 android {
     namespace "com.example.qubeyai"
-    compileSdkVersion 34
+    compileSdkVersion 35
 
     defaultConfig {
         applicationId "com.example.qubeyai"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -45,4 +45,5 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
     implementation 'androidx.multidex:multidex:2.0.1'
 }
+
 
