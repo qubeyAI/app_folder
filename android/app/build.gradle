@@ -18,6 +18,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true 
     }
 
     kotlinOptions {
@@ -46,14 +47,17 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     
-    // Core library desugaring for flutter_local_notifications
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+     // For flutter_local_notifications
+      coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 
-    // Your other dependencies
-    implementation 'com.google.firebase:firebase-auth:23.2.1'
-    implementation 'com.google.firebase:firebase-core:21.1.0'
-    // add other firebase / plugin dependencies here
+     // Firebase dependencies
+         implementation 'com.google.firebase:firebase-auth:23.2.1'
+         implementation 'com.google.firebase:firebase-core:21.1.0'
+         implementation 'com.google.firebase:firebase-messaging:16.0.4'
+
+    // Other dependencies as needed...
 }
+
 
 
 
