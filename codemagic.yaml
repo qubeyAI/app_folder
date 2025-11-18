@@ -48,5 +48,8 @@ workflows:
         script: |
           flutter build appbundle --release
 
+         - name: Build AppBundle
+        script: flutter build appbundle --release
+        
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
