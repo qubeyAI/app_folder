@@ -24,8 +24,8 @@ import 'goal_screen.dart';
 import 'notification_service.dart';
 import 'package:qubeyai/screens/alarm_screen.dart';
 import 'package:qubeyai/screens/analysis_screen.dart';
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-import 'package:alarm/alarm.dart';
+
+
 
 
 
@@ -43,7 +43,7 @@ Future<void> main()async {
   await NotificationService.initialize();
   await NotificationService.checkAndScheduleIfInactive();
   await NotificationService.recordAppOpened();
-  await Alarm.init();
+
 
 
   final prefs = await SharedPreferences.getInstance();
@@ -106,4 +106,5 @@ class MyApp extends StatelessWidget {
      },
     );
   }
+
 }
