@@ -72,10 +72,7 @@ class NotificationService {
     required String body,
     required Duration delay,
   }) async {
-    uiLocalNotificationDateInterpretation:
-    UILocalNotificationDateInterpretation.absoluteTime;
-androidAllowWhileIdle: true;
-(
+    await _notificationsPlugin.zonedSchedule(
       1,
       title,
       body,
@@ -92,6 +89,8 @@ androidAllowWhileIdle: true;
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: null,
+      uiLocalNotificationDateInterpretation:
+        UILocalNotificationDateInterpretation.absoluteTime;
     );
   }
 
@@ -119,6 +118,7 @@ androidAllowWhileIdle: true;
     );
   }
 }
+
 
 
 
