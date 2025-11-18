@@ -14,17 +14,9 @@ workflows:
         ANDROID_KEY_PASSWORD: KeyPasswordHere
 
     scripts:
-
-      - name: Force update Gradle wrapper to 8.11.1
+      - name: Decode keystore
         script: |
-          echo "Updating Gradle wrapper..."
-          mkdir -p android/gradle/wrapper
-          echo "distributionBase=GRADLE_USER_HOME" > android/gradle/wrapper/gradle-wrapper.properties
-          echo "distributionPath=wrapper/dists" >> android/gradle/wrapper/gradle-wrapper.properties
-          echo "zipStoreBase=GRADLE_USER_HOME" >> android/gradle/wrapper/gradle-wrapper.properties
-          echo "zipStorePath=wrapper/dists" >> android/gradle/wrapper/gradle-wrapper.properties
-          echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.11.1-all.zip" >> android/gradle/wrapper/gradle-wrapper.properties
-          cat android/gradle/wrapper/gradle-wrapper.properties
+          echo $ANDROID_KEYSTORE_BASE64 | base64 --decode > android/keystore.jks
 
       - name: Set key.properties for signing
         script: |
@@ -37,17 +29,13 @@ workflows:
         script: |
           flutter pub get
 
-      - name: Clean previous builds and Gradle cache
+      - name: Clean previous builds
         script: |
           flutter clean
-          echo "Cleaning Gradle cache again..."
-          rm -rf ~/.gradle/caches
-          rm -rf ~/.gradle/wrapper
 
       - name: Build AppBundle
         script: |
           flutter build appbundle --release --no-tree-shake-icons
-        
+
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
-
