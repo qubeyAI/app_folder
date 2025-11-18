@@ -73,8 +73,8 @@ class NotificationService {
     required Duration delay,
   }) async {
     uiLocalNotificationDateInterpretation:
-    UILocalNotificationDateInterpretation.absoluteTime,
-androidAllowWhileIdle: true,
+    UILocalNotificationDateInterpretation.absoluteTime;
+androidAllowWhileIdle: true;
 (
       1,
       title,
@@ -119,6 +119,7 @@ androidAllowWhileIdle: true,
     );
   }
 }
+
 
 
 
